@@ -12,16 +12,19 @@ let todos = [
   {
     _id: "5db1a22b-6410-4e4e-bc34-3814a7cd92e7",
     title: "Todo list item 1",
+    description: "Describes todo list item 1",
     completed: false,
   },
   {
     _id: "dd6d2638-283f-429c-b84a-c009fd8a34d3",
     title: "Big item 2222",
+    description: "Describes Big item 2222",
     completed: false,
   },
   {
     _id: "056d9753-1e6b-4afe-b242-375393509978",
     title: "3 bringing up the rear",
+    description: "Describes 3 bringing up the rear",
     completed: true,
   },
 ];
