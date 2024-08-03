@@ -42,7 +42,7 @@ app.get('/api/todos', (req, res) => {
 app.post('/api/todos', (req, res) => {
   console.log(`posting to ${JSON.stringify(req.body)}`);
   try {
-    todo = req.body;
+    let todo = req.body;
     todo._id = uuid();
     todos.push(req.body);
     res.status(200).send('Success');
@@ -50,6 +50,22 @@ app.post('/api/todos', (req, res) => {
     res.status(500).send('Failure');;
   }
 });
+
+app.put('/api/todos', (req, res) => {
+  console.log(`putting to ${JSON.stringify(req.body)}`);
+  try {
+    let todo = req.body;
+    const idx = todos.findIndex((item) => item._id === todo._id);
+    if (idx !== -1) {
+      todos[idx] = todo;
+      res.status(200).send('Success');
+    } else {
+      res.status(404).send('Todo does not exist');
+    }
+  } catch (e) {
+    res.status(500).send(`FAILURE: ${e}`)
+  }
+})
 
 // start the server on the port with 'node .'
 app.listen(PORT, () => {

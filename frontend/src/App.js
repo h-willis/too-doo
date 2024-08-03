@@ -5,13 +5,15 @@ import TodoItem from './TodoItem';
 import './styles.css'
 
 const DEBUG = true;
+const API = 'http://localhost:5000/api/'
 
 function App() {
+  // TODO implement all todo logic inside useReducer...
   const [todos, setTodos] = useState([]);
 
   async function getTodos() {
     try {
-      const response = await axios.get('http://localhost:5000/api/todos');
+      const response = await axios.get(`${API}todos`);
 
       if (DEBUG) {
         console.log(`getTodos(): ${JSON.stringify(response, null, 2)}`);
@@ -32,7 +34,7 @@ function App() {
 
   async function createNewTodo(todo) {
     try {
-      const response = await axios.post('http://localhost:5000/api/todos', todo);
+      const response = await axios.post(`${API}todos`, todo);
 
       if (DEBUG) {
         console.log(`createNewTodo(): ${JSON.stringify(response, null, 2)}`);
@@ -45,14 +47,34 @@ function App() {
     getTodos();
   }
 
-  function toggleComplete(id) {
+  const [idToUpdate, setIdToUpdate] = useState(null);
+  async function updateTodo(id) {
+    const updatedTodo = todos.find((todo) => todo._id === id);
+    try {
+      const response = await axios.put(`${API}todos`, updatedTodo);
+
+    } catch (e) {
+      console.log(`Problem udpating resource`);
+      console.dir(e);
+    }
+  }
+
+  useEffect(() => {
+    if (idToUpdate) {
+      updateTodo(idToUpdate);
+    }
+    setIdToUpdate(null);
+  }, [idToUpdate]);
+
+  async function toggleComplete(id) {
     console.log(`id: ${id}`);
+
     setTodos(todos.map(todo =>
       todo._id === id ? { ...todo, completed: !todo.completed } : todo
     ));
-  }
 
-  console.dir(todos);
+    setIdToUpdate(id);
+  }
 
   return (
     <div>
