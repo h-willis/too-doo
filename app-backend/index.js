@@ -1,8 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = 5000;
 
 app.use(express.json());
+app.use(cors({
+  origin: 'http://localhost:3000'
+}))
 
 let todos = [
   {
@@ -18,7 +22,7 @@ let todos = [
   {
     _id: "056d9753-1e6b-4afe-b242-375393509978",
     title: "3 bringing up the rear",
-    completed: false,
+    completed: true,
   },
 ];
 
