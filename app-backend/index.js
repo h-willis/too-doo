@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 app.use(express.json());
 
@@ -26,12 +26,12 @@ app.get('/', (req, res) => {
   res.status(200).send('Yeah we here and working');
 });
 
-app.get('/todos', (req, res) => {
+app.get('/api/todos', (req, res) => {
   console.log(`Someone wants some todos...`);
   res.status(200).json(todos);
 });
 
-app.post('/todos', (req, res) => {
+app.post('/api/todos', (req, res) => {
   console.log(`posting to ${JSON.stringify(req.body)}`);
   try {
     todos.push(req.body);
