@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { v4: uuid } = require('uuid');
 const app = express();
 const PORT = 5000;
 
@@ -41,6 +42,8 @@ app.get('/api/todos', (req, res) => {
 app.post('/api/todos', (req, res) => {
   console.log(`posting to ${JSON.stringify(req.body)}`);
   try {
+    todo = req.body;
+    todo._id = uuid();
     todos.push(req.body);
     res.status(200).send('Success');
   } catch {
