@@ -67,6 +67,23 @@ app.put('/api/todos', (req, res) => {
   }
 })
 
+// THIS IS NOTTTTT SAFE AT ALL
+app.delete('/api/todos/:id', (req, res) => {
+  console.log(`whatchu tryin' to delete?`);
+  const todoId = req.params.id;
+
+  const idxToDelete = todos.findIndex((todo) => todo._id === todoId);
+
+  if (idxToDelete === -1) {
+    res.status(404).send('Todo does not exist');
+    return;
+  }
+
+  // delete 1 index starting from idxTdDelete
+  todos.splice(idxToDelete, 1);
+  res.status(200).send('Success');
+})
+
 // start the server on the port with 'node .'
 app.listen(PORT, () => {
   console.log(`Yo bitches we're live at ${PORT}`);

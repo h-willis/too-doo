@@ -76,11 +76,36 @@ function App() {
     setIdToUpdate(id);
   }
 
+  const [idToDelete, setIdToDelete] = useState(null);
+  function handleDelete(id) {
+    setTodos(todos.filter((todo) => todo._id !== id));
+    setIdToDelete(id);
+  }
+
+  // TODO this wont work as delete requests typically dont use bodys
+  async function deleteTodo(id) {
+    console.log(`deleting todo: ${id}`);
+    try {
+      const response = await axios.delete(`${API}todos/${id}`);
+
+    } catch (e) {
+      console.log(`Problem deleting resource`);
+      console.dir(e);
+    }
+  }
+
+  useEffect(() => {
+    if (idToDelete) {
+      deleteTodo(idToDelete);
+    }
+    setIdToDelete(null);
+  }, [idToDelete]);
+
   return (
     <div>
       <NewTodo createNewTodo={createNewTodo} />
       {todos.length === 0 ? <h1>Loading...</h1> : todos.map((todo, idx) => {
-        return (<TodoItem todo={todo} key={idx} onClick={toggleComplete} />);
+        return (<TodoItem todo={todo} key={idx} onClick={toggleComplete} handleDelete={handleDelete} />);
       })}
     </div>
   );
