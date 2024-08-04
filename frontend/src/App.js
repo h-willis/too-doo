@@ -104,6 +104,23 @@ function App() {
     setIdToDelete(null);
   }, [idToDelete]);
 
+  const [outlines, setOutlines] = useState(false);
+  function toggleOutlines() {
+    const debugStyle = document.getElementById('DEBUG_STYLE');
+
+    if (outlines) {
+      debugStyle.textContent = `
+    * {
+      outline: 1px solid red;
+    }`;
+    } else {
+      debugStyle.textContent = '';
+    }
+
+
+    setOutlines(!outlines);
+  }
+
   return (
     <div>
       <SideBar />
@@ -114,6 +131,9 @@ function App() {
         {todos.length === 0 ? <h1>Loading...</h1> : todos.map((todo, idx) => {
           return (<TodoItem todo={todo} key={idx} onClick={toggleComplete} handleDelete={handleDelete} />);
         })}
+      </div>
+      <div className='DEBUG'>
+        <button onClick={toggleOutlines}>DEBUG</button>
       </div>
     </div>
   );
