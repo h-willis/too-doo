@@ -26,7 +26,8 @@ function NewTodo({ createNewTodo }) {
     const todo = {
       title: `${todoTitle}`,
       description: `${todoDescription}`,
-      completed: false
+      completed: false,
+      dateCreated: new Date().toISOString(),
     }
 
     createNewTodo(todo);

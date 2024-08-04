@@ -30,6 +30,8 @@ let todos = [
   },
 ];
 
+todos = [{ "title": "todo 1", "description": "wadswa", "completed": false, "dateCreated": "2024-08-04T01:15:08.143Z", "_id": "bcab9bfc-cdd2-4907-9ac0-564135432d74" }, { "title": "2do2", "description": "sadwaaaassd", "completed": false, "dateCreated": "2024-08-04T01:15:12.875Z", "_id": "e82f27fc-ce27-4eb0-b59f-6f7479c662b3" }, { "title": "33333333333333333333333", "description": "", "completed": false, "dateCreated": "2024-08-04T01:15:15.374Z", "_id": "555ffad8-96fd-40bf-8250-36176c940b49" }];
+
 app.get('/', (req, res) => {
   res.status(200).send('Yeah we here and working');
 });
