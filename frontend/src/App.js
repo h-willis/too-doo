@@ -3,6 +3,7 @@ import axios from 'axios'
 import NewTodo from './NewTodo';
 import TodoItem from './TodoItem';
 import './styles.css'
+import SideBar from './SideBar';
 
 const DEBUG = true;
 const API = 'http://localhost:5000/api/'
@@ -103,6 +104,7 @@ function App() {
 
   return (
     <div>
+      <SideBar />
       <NewTodo createNewTodo={createNewTodo} />
       {todos.length === 0 ? <h1>Loading...</h1> : todos.map((todo, idx) => {
         return (<TodoItem todo={todo} key={idx} onClick={toggleComplete} handleDelete={handleDelete} />);
