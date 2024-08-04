@@ -1,3 +1,104 @@
-.complete {
+:root {
+  --sidebar-width: 10vw;
+}
+
+* {
+  /* border: 0; */
+  /* margin: 0; */
+  /* padding: 0; */
+  /* outline: 1px solid red; */
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: lightgrey;
+}
+
+.mainContent {
+  /* account for sidebar */
+  margin-left: var(--sidebar-width);
+}
+
+.newTodo {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  border: 3px;
+  margin: 5px 0;
+  padding: 5px;
+  margin-bottom: 25px;
+}
+
+.newTodo button {
+  padding: 6px;
+  height: 100%;
+}
+
+.newTodo input {
+  width: 80%;
+  height: 100%;
+  border-radius: 6px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.newTodo textarea {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.todoItem {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  border: 5px;
+  border-radius: 6px;
+  border-color: lightblue;
+  border-style: solid;
+  background-color: rgb(179, 213, 224);
+  margin: 5px 0;
+}
+
+.todoItem.complete {
   color: grey;
+}
+
+.todoHeader {
+  display: flex;
+  overflow: hidden;
+  /* Hide the overflowing text */
+  text-overflow: ellipsis;
+  /* Add the ellipsis (...) */
+  white-space: nowrap;
+  /* Prevent text from wrapping */
+}
+
+.todoHeader h1 {
+  margin-bottom: auto;
+  margin-top: 6px;
+  width: 20%;
+}
+
+.todoHeader button {
+  margin-left: auto;
+  margin-right: 5px;
+  margin-bottom: auto;
+  margin-top: 5px;
+  height: 25px;
 }

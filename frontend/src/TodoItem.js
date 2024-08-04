@@ -7,13 +7,13 @@ function TodoItem({ todo, onClick, handleDelete }) {
   }
 
   return (<>
-    <div className={todo.completed ? 'complete' : ''} onClick={() => onClick(todo._id)}>
-      <h1>{todo.title}</h1>
-      <span><button onClick={(e) => _handleDelete(e)}>X</button></span>
+    <div className={`todoItem ${todo.completed ? 'complete' : ''}`} onClick={() => onClick(todo._id)}>
+      <div className='todoHeader'>
+        <h1>{todo.title}</h1>
+        <button onClick={(e) => _handleDelete(e)}>X</button>
+      </div>
       <h4>{todo.description}</h4>
-      <span>
-        <p>{todo.completed ? "Done" : ""}</p>
-      </span>
+      <p>{todo.completed ? "Done" : ""}</p>
     </div>
   </>);
 }

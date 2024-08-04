@@ -38,9 +38,11 @@ function NewTodo({ createNewTodo }) {
 
   return (
     <div className="newTodo">
-      <input type="text" value={todoTitle} onChange={handleTitleChange} onClick={handleInputClick} placeholder={'New todo'} />
-      <button onClick={handleCreateNewTodo}>Add</button>
-      {(todoTitle.length > 0) && <textarea rows="10" cols="10" onChange={handleDescChange} value={todoDescription}>Enter a description...</textarea>}
+      <div>
+        <input type="text" value={todoTitle} onChange={handleTitleChange} onClick={handleInputClick} placeholder={'New todo'} />
+        <button onClick={handleCreateNewTodo}>Add</button>
+      </div>
+      {(todoTitle.length > 0) && <textarea rows="10" cols="50" onChange={handleDescChange} value={todoDescription}>Enter a description...</textarea>}
     </div>
   )
 }

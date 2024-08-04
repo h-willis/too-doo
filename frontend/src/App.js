@@ -20,6 +20,8 @@ function App() {
         console.log(`getTodos(): ${JSON.stringify(response, null, 2)}`);
       }
 
+      // TODO order by date, completed, 
+
       setTodos(response.data);
 
     } catch (e) {
@@ -105,10 +107,14 @@ function App() {
   return (
     <div>
       <SideBar />
-      <NewTodo createNewTodo={createNewTodo} />
-      {todos.length === 0 ? <h1>Loading...</h1> : todos.map((todo, idx) => {
-        return (<TodoItem todo={todo} key={idx} onClick={toggleComplete} handleDelete={handleDelete} />);
-      })}
+      <div className="mainContent">
+        <h1>Do it</h1>
+        <NewTodo createNewTodo={createNewTodo} />
+        {/* TODO fix if no todos vs todos haaven't loaded */}
+        {todos.length === 0 ? <h1>Loading...</h1> : todos.map((todo, idx) => {
+          return (<TodoItem todo={todo} key={idx} onClick={toggleComplete} handleDelete={handleDelete} />);
+        })}
+      </div>
     </div>
   );
 }
