@@ -21,6 +21,11 @@ function App() {
         console.log(`getTodos(): ${JSON.stringify(response, null, 2)}`);
       }
 
+      // check if data exists
+      if (response.data.length === 0) {
+        response.data = [];
+      }
+
       const parsedTodos = response.data.map(todo => {
         todo.dateCreated = new Date(todo.dateCreated);
         todo.dueDate = todo.dueDate === 'null' ? null : new Date(todo.dueDate);
@@ -124,9 +129,42 @@ function App() {
     setOutlines(!outlines);
   }
 
+  const [filter, setFilter] = useState("created");
+  function onFilterChange(state) {
+    setFilter(state);
+  }
+
+  useEffect(() => {
+    filterTodos();
+  }, [filter]);
+
+  function filterTodos() {
+    // this is fine as theres no nesting of objects
+    let filteredTodos = [...todos];
+    switch (filter) {
+      case "created":
+        filteredTodos.sort((a, b) => b.dateCreated - a.dateCreated);
+        break;
+      case "due":
+        filteredTodos.sort((a, b) => {
+          // handle null dates
+          const dateA = !a.dueDate ? new Date(2100, 1) : a.dueDate;
+          const dateB = !b.dueDate ? new Date(2100, 1) : b.dueDate;
+
+          return dateA - dateB;
+        });
+        break;
+      case "completed":
+        // TODO filter by date first anyway?
+        filteredTodos.sort((a, b) => a.completed - b.completed);
+        break;
+    }
+    setTodos(filteredTodos);
+  }
+
   return (
     <div>
-      <SideBar />
+      <SideBar onClick={onFilterChange} />
       <div className="mainContent">
         <h1>Do it</h1>
         <NewTodo createNewTodo={createNewTodo} />
