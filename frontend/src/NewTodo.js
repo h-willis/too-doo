@@ -1,25 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import DatePickerComp from './DatePickerComp';
 
 function NewTodo({ createNewTodo }) {
   const [todoTitle, setTodoTitle] = useState('');
   function handleTitleChange({ target }) {
+    if (todoTitle.length > 55) {
+      return;
+    }
     setTodoTitle(target.value);
   }
 
-  // handles decription box disappearing if 'New todo' is typed after 
-  // can also do some fancy styling if its been clicked
-  // TODO actually make this work
-  const [inputClicked, setInputClicked] = useState(false);
-  function handleInputClick() {
-    if (todoTitle === 'New todo') {
-      setTodoTitle('');
-    }
-    setInputClicked(true);
-  }
-
-  const [todoDescription, setTodoDescription] = useState("");
+  const [todoDescription, setTodoDescription] = useState('');
   function handleDescChange({ target }) {
     setTodoDescription(target.value);
+  }
+
+  const [dueDate, setDueDate] = useState(null);
+  function handleDatePick(date) {
+    if (date) {
+      setDueDate(date.toISOString());
+    } else {
+      setDueDate(date);
+    }
   }
 
   function handleCreateNewTodo() {
@@ -28,11 +30,13 @@ function NewTodo({ createNewTodo }) {
       description: `${todoDescription}`,
       completed: false,
       dateCreated: new Date().toISOString(),
+      dueDate: `${dueDate}`
     }
 
     createNewTodo(todo);
     setTodoTitle('');
     setTodoDescription('');
+    setDueDate(null);
   }
 
 
@@ -42,9 +46,14 @@ function NewTodo({ createNewTodo }) {
         <input type="text" value={todoTitle} onChange={handleTitleChange} onClick={handleInputClick} placeholder={'New todo'} />
         <button onClick={handleCreateNewTodo}>Add</button>
       </div>
-      {(todoTitle.length > 0) && <textarea rows="10" cols="50" onChange={handleDescChange} value={todoDescription}>Enter a description...</textarea>}
+      {(todoTitle.length > 0) && (
+        <>
+          <DatePickerComp onChange={handleDatePick} selected={dueDate} />
+          <textarea rows="10" cols="50" onChange={handleDescChange} value={todoDescription}>Enter a description...</textarea>
+        </>
+      )}
     </div>
   )
 }
 
-export default NewTodo
+export default NewTodo;
