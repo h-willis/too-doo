@@ -107,7 +107,7 @@ function App() {
     setIdToDelete(null);
   }, [idToDelete]);
 
-  const [outlines, setOutlines] = useState(false);
+  const [outlines, setOutlines] = useState(true);
   function toggleOutlines() {
     const debugStyle = document.getElementById('DEBUG_STYLE');
 
