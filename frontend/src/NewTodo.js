@@ -43,7 +43,7 @@ function NewTodo({ createNewTodo }) {
   return (
     <div className="newTodo">
       <div>
-        <input type="text" value={todoTitle} onChange={handleTitleChange} onClick={handleInputClick} placeholder={'New todo'} />
+        <input type="text" value={todoTitle} onChange={handleTitleChange} placeholder={'New todo'} />
         <button onClick={handleCreateNewTodo}>Add</button>
       </div>
       {(todoTitle.length > 0) && (
