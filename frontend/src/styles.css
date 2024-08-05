@@ -4,32 +4,60 @@
 
 * {
   /* border: 0; */
-  /* margin: 0; */
+  margin: 0;
   /* padding: 0; */
   /* outline: 1px solid red; */
+}
+
+body {
+  height: 100vh;
+  background-color: rgb(212, 232, 238);
+}
+
+button {
+  background-color: rgb(88, 75, 83);
+  border-radius: 6px;
+  box-shadow: none;
+  color: rgb(255, 240, 124);
+}
+
+button:hover {
+  background-color: rgb(59, 50, 56);
+}
+
+.mainContent {
+  /* account for sidebar */
+  margin-left: calc(var(--sidebar-width) + 12px);
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0px;
   left: 0px;
   width: var(--sidebar-width);
   height: 100vh;
-  background-color: lightgrey;
+  /* background-color: rgb(254, 74, 73); */
+  background: linear-gradient(rgb(254, 74, 73), rgb(254, 113, 113));
 }
 
-.mainContent {
-  /* account for sidebar */
-  margin-left: var(--sidebar-width);
+.sidebar button {
+  width: 80%;
+  margin: 18px 0;
+}
+
+.sidebar button:last-child {
+  margin-bottom: auto;
 }
 
 .newTodo {
   display: flex;
   flex-direction: column;
   width: 400px;
+  height: auto;
   border: 3px;
   margin: 5px 0;
   padding: 5px;
@@ -38,13 +66,16 @@
 
 .newTodo button {
   padding: 6px;
-  height: 100%;
+  height: 110%;
+  border-radius: 6px;
 }
 
 .newTodo input {
   width: 80%;
   height: 100%;
   border-radius: 6px;
+  background-color: rgb(234, 248, 252);
+  margin-right: 6px;
 }
 
 @keyframes fadeIn {
@@ -61,17 +92,20 @@
 
 .newTodo textarea {
   animation: fadeIn 0.3s ease-in;
+  margin-top: 12px;
+  resize: none;
 }
 
 .todoItem {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 60vw;
   border: 5px;
   border-radius: 6px;
-  border-color: lightblue;
+  border-color: rgb(182, 214, 224);
   border-style: solid;
-  background-color: rgb(179, 213, 224);
+  /* background-color: rgb(140, 204, 223); */
+  background: linear-gradient(45deg, rgb(140, 204, 223), rgb(101, 197, 226));
   margin: 5px 0;
 }
 
@@ -81,24 +115,38 @@
 
 .todoHeader {
   display: flex;
+
+}
+
+.todoHeader h2 {
+  margin-bottom: auto;
+  margin-top: 6px;
+  width: auto;
   overflow: hidden;
   /* Hide the overflowing text */
   text-overflow: ellipsis;
   /* Add the ellipsis (...) */
   white-space: nowrap;
   /* Prevent text from wrapping */
+  flex-grow: 1;
+  color: rgb(255, 240, 124);
 }
 
-.todoHeader h1 {
-  margin-bottom: auto;
-  margin-top: 6px;
-  width: 20%;
-}
+/* .todoHeader #update {
+  margin-left: auto;
+} */
 
 .todoHeader button {
-  margin-left: auto;
+  /* align-self: flex-end; */
+  /* margin-left: auto; */
   margin-right: 5px;
   margin-bottom: auto;
   margin-top: 5px;
   height: 25px;
+}
+
+.DEBUG {
+  position: fixed;
+  bottom: 0;
+  right: 0;
 }

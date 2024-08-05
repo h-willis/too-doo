@@ -9,7 +9,7 @@ function DatePickerComp({ onChange, selected }) {
     <div>
       <DatePicker
         onChange={(date) => onChange(date)}
-        placeholderText="Select a date"
+        placeholderText="Select a due date"
         selected={selected}
         minDate={new Date()}
         isClearable

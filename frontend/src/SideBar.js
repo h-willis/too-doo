@@ -3,6 +3,7 @@ import React from 'react'
 function SideBar() {
   return (
     <div className="sidebar">
+      <h4>Filters</h4>
       <button>
         Complete filter
       </button>
@@ -10,7 +11,7 @@ function SideBar() {
         Due filter
       </button>
       <button>
-        Complete filter
+        Created filter
       </button>
     </div>
   )
