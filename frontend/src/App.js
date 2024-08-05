@@ -13,6 +13,7 @@ function App() {
   const [todos, setTodos] = useState([]);
 
   async function getTodos() {
+    // getTodos and convert relevant fields into date objects
     try {
       const response = await axios.get(`${API}todos`);
 
@@ -20,9 +21,12 @@ function App() {
         console.log(`getTodos(): ${JSON.stringify(response, null, 2)}`);
       }
 
-      // TODO order by date, completed, 
-
-      setTodos(response.data);
+      const parsedTodos = response.data.map(todo => {
+        todo.dateCreated = new Date(todo.dateCreated);
+        todo.dueDate = todo.dueDate === 'null' ? null : new Date(todo.dueDate);
+        return todo;
+      });
+      setTodos(parsedTodos);
 
     } catch (e) {
       console.log('We got an issue...');
@@ -85,7 +89,6 @@ function App() {
     setIdToDelete(id);
   }
 
-  // TODO this wont work as delete requests typically dont use bodys
   async function deleteTodo(id) {
     console.log(`deleting todo: ${id}`);
     try {
