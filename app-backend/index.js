@@ -30,7 +30,31 @@ let todos = [
   },
 ];
 
-todos = [{ "title": "todo 1", "description": "wadswa", "completed": false, "dateCreated": "2024-08-04T01:15:08.143Z", "_id": "bcab9bfc-cdd2-4907-9ac0-564135432d74" }, { "title": "2do2", "description": "sadwaaaassd", "completed": false, "dateCreated": "2024-08-04T01:15:12.875Z", "_id": "e82f27fc-ce27-4eb0-b59f-6f7479c662b3" }, { "title": "33333333333333333333333", "description": "", "completed": false, "dateCreated": "2024-08-04T01:15:15.374Z", "_id": "555ffad8-96fd-40bf-8250-36176c940b49" }];
+// todos = [{ "title": "todo 1", "description": "wadswa", "completed": false, "dateCreated": "2024-08-04T01:15:08.143Z", "_id": "bcab9bfc-cdd2-4907-9ac0-564135432d74" }, { "title": "2do2", "description": "sadwaaaassd", "completed": false, "dateCreated": "2024-08-04T01:15:12.875Z", "_id": "e82f27fc-ce27-4eb0-b59f-6f7479c662b3" }, { "title": "33333333333333333333333", "description": "", "completed": false, "dateCreated": "2024-08-04T01:15:15.374Z", "_id": "555ffad8-96fd-40bf-8250-36176c940b49" }];
+todos = [{
+  "title": "Todo item 1",
+  "description": "Todo item 1 description with no due date",
+  "completed": false,
+  "dateCreated": "2024-08-05T01:03:02.319Z",
+  "dueDate": "null",
+  "_id": "322da6d6-a882-4551-98bd-f04342649eed"
+},
+{
+  "title": "Todo item 2",
+  "description": "Todo item 2 description this one contains a due date",
+  "completed": false,
+  "dateCreated": "2024-08-05T01:03:17.779Z",
+  "dueDate": "2024-08-06T12:00:00.000Z",
+  "_id": "e1a3fe7b-2b4d-4dee-b7db-f9946371c123"
+},
+{
+  "title": "Todo item 3 no description",
+  "description": "",
+  "completed": false,
+  "dateCreated": "2024-08-05T01:03:30.600Z",
+  "dueDate": "2024-08-08T12:00:00.000Z",
+  "_id": "de481877-e281-4b14-8444-c601ccb8a4ee"
+}];
 
 app.get('/', (req, res) => {
   res.status(200).send('Yeah we here and working');
