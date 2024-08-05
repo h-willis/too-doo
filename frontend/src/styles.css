@@ -113,6 +113,10 @@ button:hover {
   color: grey;
 }
 
+.todoItem.complete h2 {
+  text-decoration: line-through;
+}
+
 .todoHeader {
   display: flex;
 
