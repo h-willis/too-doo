@@ -1,10 +1,6 @@
 # Use the official MongoDB image as the base image
 FROM mongo:latest
 
-# Install MongoDB client tools
-# RUN apt-get update && apt-get install -y mongodb-clients
-RUN apt-get install -y mongodb-clients
-
 # Ensure the MongoDB tools are in the PATH
 ENV PATH /usr/bin:$PATH
 
