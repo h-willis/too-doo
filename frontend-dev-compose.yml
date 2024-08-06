@@ -2,15 +2,15 @@ version: '3'
 
 services:
   mongo:
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
     image: defaultmongodb:latest
     container_name: mongo
     ports:
       - "27017:27017"
     volumes:
-      - ./data/db:/host-data  # Bind mount host directory to container directory
-    build:
-      context: ./mongodb
-      dockerfile: Dockerfile
+      - ./mongodb/data/db:/host-data  # Bind mount host directory to container directory
 
   express:
     build:
