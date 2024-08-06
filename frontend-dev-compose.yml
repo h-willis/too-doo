@@ -7,7 +7,7 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./host-data:/data/db  # Bind mount host directory to container directory
+      - ./data/db:/host-data  # Bind mount host directory to container directory
     build:
       context: ./mongodb
       dockerfile: Dockerfile

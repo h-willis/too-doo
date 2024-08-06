@@ -5,7 +5,7 @@ import TodoItem from './TodoItem';
 import './styles.css'
 import SideBar from './SideBar';
 
-const DEBUG = true;
+const DEBUG = false;
 const API = 'http://localhost:5000/api/'
 
 function App() {
