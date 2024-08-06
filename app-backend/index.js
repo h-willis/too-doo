@@ -15,11 +15,8 @@ app.use(cors({
   origin: 'http://localhost:3000'
 }))
 
-// TODO make this docker friendly
-// MongoDB connection URI
-// const uri = 'mongodb://localhost:27017';
-// THIS IS THE NAME OF THE CONTAINER NETWORK WERE AIMING FOR
-const uri = 'mongodb://mongo:27017';
+// THIS IS THE NAME OF THE CONTAINER NETWORK WERE AIMING FOR eg mongodb://mongo:27017
+const uri = process.env.MONGO_URI || 'mongodb://localhost:27017';
 const client = new MongoClient(uri);
 
 let db;
