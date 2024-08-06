@@ -15,19 +15,23 @@ app.use(cors({
   origin: 'http://localhost:3000'
 }))
 
+// TODO make this docker friendly
 // MongoDB connection URI
 const uri = 'mongodb://localhost:27017';
 const client = new MongoClient(uri);
 
 // TODO make this await try catch etc...
 // Connect to MongoDB
-client.connect()
-  .then(() => {
-    console.log('Connected to MongoDB');
-    db = client.db(DBNAME);
-  })
-  .catch(err => console.error(err));
-
+let connected = false;
+while (!connected) {
+  client.connect()
+    .then(() => {
+      console.log('Connected to MongoDB');
+      db = client.db(DBNAME);
+      connected = true;
+    })
+    .catch(err => console.error(err));
+}
 
 app.get('/', (req, res) => {
   res.status(200).send('Yeah we here and working');
