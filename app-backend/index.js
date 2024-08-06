@@ -19,6 +19,7 @@ app.use(cors({
 const uri = process.env.MONGO_URI || 'mongodb://localhost:27017';
 const client = new MongoClient(uri);
 
+let connection;
 let db;
 
 // god i hate this
@@ -28,8 +29,9 @@ async function connectToDb() {
   let connected = false;
   while (!connected) {
     try {
-      await client.connect();
+      connection = await client.connect();
       console.log(`Connected to MongoDB`);
+      db = connection.db(DBNAME);
       connected = true;
     } catch (e) {
       console.log(`Connection attempt failed: ${e}`);
