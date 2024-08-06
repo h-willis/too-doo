@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { MongoClient, ObjectId } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const { v4: uuid } = require('uuid');
 const app = express();
 const PORT = 5000;
@@ -24,32 +24,24 @@ const client = new MongoClient(uri);
 
 let db;
 
+// god i hate this
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-// TODO make this await try catch etc...
-// Connect to MongoDB
-// let connected = false;
-// while (!connected) {
-//   try {
-//     client.connect()
-//       .then(() => {
-//         console.log('Connected to MongoDB');
-//         db = client.db(DBNAME);
-//         connected = true;
-//       })
-//   } catch (e) {
-//     console.log(err);
-//   }
-// }
+async function connectToDb() {
+  let connected = false;
+  while (!connected) {
+    try {
+      await client.connect();
+      console.log(`Connected to MongoDB`);
+      connected = true;
+    } catch (e) {
+      console.log(`Connection attempt failed: ${e}`);
+      delay(500);
+    }
+  }
+}
 
-client.connect()
-  .then(() => {
-    console.log('Connected to MongoDB');
-    db = client.db(DBNAME);
-    // connected = true;
-  })
-// .except((err) => {
-//   console.log(err);
-// })
+connectToDb();
 
 app.get('/', (req, res) => {
   res.status(200).send('Yeah we here and working');
