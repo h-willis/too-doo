@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  mongo:
+    image: defaultmongodb:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./host-data:/data/db  # Bind mount host directory to container directory
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
+
+  express:
+    build:
+      context: ./app-backend
+      dockerfile: Dockerfile
+    container_name: backend
+    depends_on:
+      - mongo
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/yourdbname
+    volumes:
+      - ./app-backend:/app
