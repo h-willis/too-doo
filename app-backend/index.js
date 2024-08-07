@@ -50,7 +50,8 @@ app.get('/api/todos', async (req, res) => {
   try {
     const collection = getCollection();
     const data = await collection.find().toArray();
-    console.log(`GOT SOME TODOS: ${data}`);
+    // console.log(`GOT SOME TODOS: ${JSON.stringify(data, null, 2)}`);
+    console.log(`GOT SOME TODOS`);
     res.json(data);
   } catch (err) {
     res.status(500).send(err.message);
