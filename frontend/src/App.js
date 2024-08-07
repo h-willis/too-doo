@@ -28,7 +28,7 @@ function App() {
 
       const parsedTodos = response.data.map(todo => {
         todo.dateCreated = new Date(todo.dateCreated);
-        todo.dueDate = todo.dueDate === 'null' ? null : new Date(todo.dueDate);
+        todo.dueDate = todo.dueDate === null ? null : new Date(todo.dueDate);
         return todo;
       });
       setTodos(parsedTodos);
