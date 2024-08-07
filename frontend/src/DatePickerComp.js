@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 function DatePickerComp({ onChange, selected }) {
 
   return (
-    <div>
+    <div className='datePicker'>
       <DatePicker
         onChange={(date) => onChange(date)}
         placeholderText="Select a due date"

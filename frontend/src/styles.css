@@ -154,3 +154,7 @@ button:hover {
   bottom: 0;
   right: 0;
 }
+
+.datePicker button {
+  height: 10%;
+}
