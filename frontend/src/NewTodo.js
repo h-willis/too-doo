@@ -19,8 +19,6 @@ function NewTodo({ createNewTodo }) {
   function handleDatePick(date) {
     if (date) {
       setDueDate(date.toISOString());
-    } else {
-      setDueDate(date);
     }
   }
 
@@ -30,7 +28,7 @@ function NewTodo({ createNewTodo }) {
       description: `${todoDescription}`,
       completed: false,
       dateCreated: new Date().toISOString(),
-      dueDate: `${dueDate}`
+      dueDate: dueDate
     }
 
     createNewTodo(todo);
